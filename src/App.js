@@ -1,10 +1,10 @@
 import React from "react";
-import Countdown from "./Countdown";
+import GreetingsControl from "./GreetingsControl";
 
 function App() {
   return (
     <>
-      <Countdown />
+      <GreetingsControl />
     </>
   );
 }

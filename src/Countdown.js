@@ -2,25 +2,25 @@ import React, { Component } from "react";
 
 export default class Countdown extends Component {
   constructor(props) {
-    super(props);
-    //data del prossimo anno
-    let nextYear = new Date().getFullYear() + 1;
-    //data del 1 gennaio
-    this.targetTime = new Date(0);
-    this.targetTime.setFullYear(nextYear);
-    this.targetTime = this.targetTime.getTime();
+    super(props); // parent's constructor
+
+    // data in ms
+    this.targetTime = this.props.date;
 
     this.state = { timeRemaining: this.targetTime - new Date().getTime() };
   }
 
+  // quando viene caricato imposta nuovo timer
   componentDidMount() {
     this.timer = setInterval(() => this.tick(), 1000);
   }
 
+  // quando viene rimosso cancella il timer
   componentWillUnmount() {
     clearInterval(this.timer);
   }
 
+  // questo ogni secondo
   tick() {
     this.setState({ timeRemaining: this.targetTime - new Date() });
   }
