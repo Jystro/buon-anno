@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Timer from "./Timer";
+import Greetings from "./Greetings";
 
 export default class GreetingsControl extends Component {
   constructor(props) {
@@ -17,7 +18,11 @@ export default class GreetingsControl extends Component {
   render() {
     let content;
     if (this.state.remainingTime < 0 && this.state.remainingTime > -2_678_400_000) {
-      // content = <Greetings />;
+      content = (
+        <div>
+          <Greetings />
+        </div>
+      );
     } else {
       // data fino a cui contare in ms
       let date = new Date(
