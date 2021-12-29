@@ -15,10 +15,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run watch:css && react-scripts build",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "postcss src/styles/main.css -o src/styles/output.css --watch"
+    "watch:css": "postcss src/styles/main.css -o src/styles/output.css --watch",
+    "build:css": "npx tailwindcss -o src/styles/output.css --minify"
   },
   "eslintConfig": {
     "extends": [
