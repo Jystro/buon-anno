@@ -17,21 +17,20 @@ export default class GreetingsControl extends Component {
 
   render() {
     let content;
-    if (this.state.remainingTime < 0 && this.state.remainingTime > -2_678_400_000) {
-      content = (
-        <div>
-          <Greetings />
-        </div>
-      );
+    // fino a 2 settimane dopo
+    if (this.state.remainingTime < 0 && this.state.remainingTime > -120_960_000) {
+      content = <h1>Buon anno</h1>;
     } else {
       // data fino a cui contare in ms
-      let date = new Date(
-        String(new Date().getFullYear() + 1) + "-01-01T00:00:00"
-      ).getTime();
+      let date = new Date(String(new Date().getFullYear() + 1) + "-01-01T00:00:00");
       content = (
-        <div>
-          <Timer date={date} onExpiry={this.handleExpiry} />
-          <h1>AL NUOVO ANNO</h1>
+        <div className="min-w-screen min-h-screen bg-yellow-500 flex items-center justify-center px-5 py-5">
+          <div className="text-yellow-100">
+            <h1 className="text-5xl text-center mb-4 font-extralight">
+              Quanto manca al {date.getFullYear()}?
+            </h1>
+            <Timer date={date.getTime()} onExpiry={this.handleExpiry} />
+          </div>
         </div>
       );
     }

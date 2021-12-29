@@ -45,15 +45,14 @@ export default class Countdown extends Component {
   render() {
     Object.assign(this, this.formatTime());
     return (
-      <div>
+      <div className="text-6xl text-center flex w-full items-center justify-center">
         <TimerNumber number={this.days} />
-        <div> giorni </div>
+        <div className="text-white font-mono">:</div>
         <TimerNumber number={this.hours} />
-        <div> ore </div>
+        <div className="text-white font-mono">:</div>
         <TimerNumber number={this.minutes} />
-        <div> minuti </div>
+        <div className="text-white font-mono">:</div>
         <TimerNumber number={this.seconds} />
-        <div> secondi </div>
       </div>
     );
   }
