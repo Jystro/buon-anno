@@ -44,8 +44,8 @@ export default function Greetings(props) {
           "https://fireworks.js.org/sounds/explosion2.mp3"
         ],
         volume: {
-          min: 2,
-          max: 3
+          min: 15,
+          max: 25
         }
       },
       mouse: {
@@ -64,7 +64,7 @@ export default function Greetings(props) {
   if (props.greet) {
     g = (
       <div className="fixed z-10 h-screen w-screen text-center justify-center place-content-center flex flex-col space-y-6 sm:space-y-0 leading-4 text-5xl sm:text-8xl lg:text-[11rem]">
-        <h1 className="text-nyyellow-300">BUON ANNO</h1>
+        <h1 className="text-nyyellow-400">BUON ANNO</h1>
         <p className="text-nypink-400">{new Date().getFullYear()}</p>
       </div>
     );

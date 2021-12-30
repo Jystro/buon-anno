@@ -11,17 +11,17 @@ export default class GreetingsControl extends Component {
     this.handleExpiry = this.handleExpiry.bind(this);
     this.handleAudio = this.handleAudio.bind(this);
 
-    this.state = { remainingTime: Infinity, audioOn: false };
+    this.state = { remainingTime: -1, audioOn: false };
   }
 
   handleExpiry(time) {
     this.setState({ remainingTime: time });
   }
 
-  handleAudio() {
-    this.setState((prevState) => ({
-      audioOn: !prevState.audioOn
-    }));
+  handleAudio(audio) {
+    this.setState({
+      audioOn: audio
+    });
   }
 
   render() {
@@ -56,69 +56,55 @@ export default class GreetingsControl extends Component {
       }
     }
 
-    // icon logic
-    let icon;
-    {
-      if (this.state.audioOn) {
-        icon = (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-16 w-16 stroke-nyblue-100 hover:stroke-nyblue-200 transition-colors duration-300"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-              clipRule="evenodd"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-            />
-          </svg>
-        );
-      } else {
-        icon = (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-16 w-16 stroke-nyblue-100 hover:stroke-nyblue-200 transition-colors duration-300"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-            />
-          </svg>
-        );
-      }
-    }
-
     return (
       <div className="select-none font-mono">
         {content}
         <Source shadowColor="shadow-nyblue-200/60" />
-        <AudioControl>
-          <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
-            <button
-              className={
-                "block w-16 h-16 rounded-full transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 bg-white content-center justify-center justify-items-center duration-300"
-              }
-              onClick={this.handleAudio}
-            >
-              {icon}
-            </button>
-          </div>
-        </AudioControl>
+        <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+          <AudioControl
+            onClick={this.handleAudio}
+            audioOn={this.state.audioOn}
+            onIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-16 w-16 stroke-nyblue-100 hover:stroke-nyblue-200 transition-colors duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                />
+              </svg>
+            }
+            offIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-16 w-16 stroke-nyblue-100 hover:stroke-nyblue-200 transition-colors duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                  clipRule="evenodd"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                />
+              </svg>
+            }
+          />
+        </div>
       </div>
     );
   }
