@@ -11,7 +11,7 @@ export default class GreetingsControl extends Component {
     this.handleExpiry = this.handleExpiry.bind(this);
     this.handleAudio = this.handleAudio.bind(this);
 
-    this.state = { remainingTime: -1, audioOn: false };
+    this.state = { remainingTime: Infinity, audioOn: false };
   }
 
   handleExpiry(time) {
