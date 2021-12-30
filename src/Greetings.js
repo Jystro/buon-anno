@@ -2,7 +2,7 @@ import { React, useEffect } from "react";
 import { Fireworks, useFireworks } from "fireworks-js/dist/react";
 
 export default function Greetings(props) {
-  const { setEnabled, setOptions, enabled, options } = useFireworks({
+  const { setOptions, enabled, options } = useFireworks({
     initialStart: true,
     initialOptions: {
       hue: {
@@ -10,16 +10,17 @@ export default function Greetings(props) {
         max: 345
       },
       delay: {
-        min: 15,
-        max: 15
+        min: 13,
+        max: 18
       },
       rocketsPoint: 50,
-      speed: 10,
-      acceleration: 1.2,
-      friction: 0.96,
-      gravity: 1,
-      particles: 90,
-      trace: 3,
+      opacity: 0.8,
+      speed: 7,
+      acceleration: 1.025,
+      friction: 0.98,
+      gravity: 0.5,
+      particles: 120,
+      trace: 2,
       explosion: 6,
       autoresize: true,
       brightness: {
@@ -31,7 +32,9 @@ export default function Greetings(props) {
         }
       },
       boundaries: {
-        visible: false
+        visible: false,
+        x: 100,
+        y: 150
       },
       sound: {
         enabled: props.audio,
@@ -41,14 +44,14 @@ export default function Greetings(props) {
           "https://fireworks.js.org/sounds/explosion2.mp3"
         ],
         volume: {
-          min: 1,
-          max: 2
+          min: 2,
+          max: 3
         }
       },
       mouse: {
         click: true,
         move: false,
-        max: 1
+        max: 50
       }
     }
   });
@@ -57,25 +60,23 @@ export default function Greetings(props) {
     setOptions({ sound: { enabled: props.audio } });
   }, [props]);
 
-  const style = {
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    position: "fixed",
-    background: "#000"
-  };
-
+  let g = null;
+  if (props.greet) {
+    g = (
+      <div className="fixed z-10 h-screen w-screen text-center justify-center place-content-center flex flex-col space-y-6 sm:space-y-0 leading-4 text-5xl sm:text-8xl lg:text-[11rem]">
+        <h1 className="text-nyyellow-300">BUON ANNO</h1>
+        <p className="text-nypink-400">{new Date().getFullYear()}</p>
+      </div>
+    );
+  }
   return (
     <>
-      <Fireworks style={style} enabled={enabled} options={options}>
-        <div
-          style={{
-            display: "flex",
-            background: "#607d8b"
-          }}
-        ></div>
-      </Fireworks>
+      {g}
+      <Fireworks
+        enabled={enabled}
+        options={options}
+        className="bg-gradient-to-t from-nyblue-100 to-slate-900 bg-cover bg-no-repeat fixed left-0 top-0 w-full h-full block"
+      />
     </>
   );
 }

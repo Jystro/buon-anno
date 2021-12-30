@@ -29,28 +29,27 @@ export default class GreetingsControl extends Component {
     let content;
     {
       // fino a 2 settimane dopo
-      if (this.state.remainingTime < 0 && this.state.remainingTime > -120_960_000) {
+      if (this.state.remainingTime < 0 && this.state.remainingTime > -1_209_600_00) {
         content = (
-          <>
-            <Greetings audio={this.state.audioOn} />
-          </>
+          <Greetings
+            audio={this.state.audioOn}
+            greet={this.state.remainingTime > -259_200_00}
+          />
         );
       } else {
         // data fino a cui contare in ms
         let date = new Date(String(new Date().getFullYear() + 1) + "-01-01T00:00:00");
         content = (
-          <div className="select-none">
-            <div className="min-w-screen min-h-screen bg-nyblue-100 flex items-center justify-center px-5 py-5 cursor-default">
-              <div className="text-nypink-700">
-                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl 2xl:text-[7rem] text-center mb-12 font-sans antialiased font-semibold">
-                  Quanto manca al {date.getFullYear()}?
-                </h1>
-                <Timer
-                  date={date.getTime()}
-                  onExpiry={this.handleExpiry}
-                  audio={this.state.audioOn}
-                />
-              </div>
+          <div className="min-w-screen min-h-screen bg-gradient-to-t from-nyblue-100 to-slate-900 flex items-center justify-center px-5 py-5 cursor-default">
+            <div className="text-nyyellow-400">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl 2xl:text-[7rem] text-center mb-12 antialiased font-semibold">
+                Quanto manca al {date.getFullYear()}?
+              </h1>
+              <Timer
+                date={date.getTime()}
+                onExpiry={this.handleExpiry}
+                audio={this.state.audioOn}
+              />
             </div>
           </div>
         );
@@ -105,7 +104,7 @@ export default class GreetingsControl extends Component {
     }
 
     return (
-      <>
+      <div className="select-none font-mono">
         {content}
         <Source shadowColor="shadow-nyblue-200/60" />
         <AudioControl>
@@ -120,7 +119,7 @@ export default class GreetingsControl extends Component {
             </button>
           </div>
         </AudioControl>
-      </>
+      </div>
     );
   }
 }
