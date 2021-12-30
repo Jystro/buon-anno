@@ -33,7 +33,6 @@ export default class GreetingsControl extends Component {
         content = (
           <>
             <Greetings audio={this.state.audioOn} />
-            <Source shadowColor="shadow-black/60" />
           </>
         );
       } else {
@@ -53,11 +52,11 @@ export default class GreetingsControl extends Component {
                 />
               </div>
             </div>
-            <Source shadowColor="shadow-nyblue-200/60" />
           </div>
         );
       }
     }
+
     // icon logic
     let icon;
     {
@@ -104,9 +103,11 @@ export default class GreetingsControl extends Component {
         );
       }
     }
+
     return (
       <>
         {content}
+        <Source shadowColor="shadow-nyblue-200/60" />
         <AudioControl>
           <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
             <button
