@@ -29,11 +29,17 @@ export default class GreetingsControl extends Component {
     let content;
     {
       // fino a 2 settimane dopo
-      if (this.state.remainingTime < 0 && this.state.remainingTime > -1_209_600_00) {
+      if (
+        (this.state.remainingTime < 0 && this.state.remainingTime > -1_209_600_00) ||
+        this.state.remainingTime > 30_326_400_000
+      ) {
         content = (
           <Greetings
             audio={this.state.audioOn}
-            greet={this.state.remainingTime > -259_200_00}
+            greet={
+              this.state.remainingTime > -259_200_000 ||
+              this.state.remainingTime > 31_276_800_000
+            }
           />
         );
       } else {
