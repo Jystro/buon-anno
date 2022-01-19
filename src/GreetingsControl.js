@@ -28,23 +28,19 @@ export default class GreetingsControl extends Component {
     // greetings logic
     let content;
     {
-      // fino a 2 settimane dopo
-      if (
-        (this.state.remainingTime < 0 && this.state.remainingTime > -1_209_600_00) ||
-        this.state.remainingTime > 30_326_400_000
-      ) {
-        content = (
-          <Greetings
-            audio={this.state.audioOn}
-            greet={
-              this.state.remainingTime > -259_200_000 ||
-              this.state.remainingTime > 31_276_800_000
-            }
-          />
-        );
+      // toglinedo la variabile si inverte??
+      let greet = new Date().getDate() <= 14;
+
+      // usare state.remainingTime non funziona perché Timer non è chiamato
+
+      //se è gennaio
+      if (/*!(new Date().getMonth() > 1) || */ this.state.remainingTime < 0) {
+        content = <Greetings audio={this.state.audioOn} greet={/*greet*/ true} />;
       } else {
         // data fino a cui contare in ms
-        let date = new Date(String(new Date().getFullYear() + 1) + "-01-01T00:00:00");
+        let date = new Date(
+          /*String(new Date().getFullYear() + 1) + "-01-01T00:00:00"*/ "2022-01-22T11:15:00"
+        );
         content = (
           <div className="min-w-screen min-h-screen bg-gradient-to-t from-nyblue-100 to-slate-900 flex items-center justify-center px-5 py-5 cursor-default">
             <div className="text-nyyellow-400">

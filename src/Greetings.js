@@ -10,14 +10,14 @@ export default function Greetings(props) {
         max: 345
       },
       delay: {
-        min: 13,
-        max: 18
+        min: 50,
+        max: 70
       },
       rocketsPoint: 50,
       opacity: 0.8,
-      speed: 7,
-      acceleration: 1.025,
-      friction: 0.98,
+      speed: 4,
+      acceleration: 1.01,
+      friction: 0.985,
       gravity: 0.5,
       particles: 120,
       trace: 2,
@@ -51,7 +51,7 @@ export default function Greetings(props) {
       mouse: {
         click: true,
         move: false,
-        max: 50
+        max: 20
       }
     }
   });
